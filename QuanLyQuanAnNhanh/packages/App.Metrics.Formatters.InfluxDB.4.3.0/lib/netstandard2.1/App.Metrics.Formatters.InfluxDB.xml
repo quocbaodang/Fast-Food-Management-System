@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>App.Metrics.Formatters.InfluxDB</name>
+    </assembly>
+    <members>
+        <member name="M:App.Metrics.MetricsInfluxDbLineProtocolFormatterBuilder.AsInfluxDbLineProtocol(App.Metrics.IMetricsOutputFormattingBuilder,System.Action{App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOptions},App.Metrics.MetricFields)">
+            <summary>
+                Add the <see cref="T:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter" /> allowing metrics to optionally be reported to
+                InfluxDB using the LineProtocol.
+            </summary>
+            <param name="metricFormattingBuilder">s
+                The <see cref="T:App.Metrics.IMetricsOutputFormattingBuilder" /> used to configure InfluxDB Lineprotocol formatting
+                options.
+            </param>
+            <param name="setupAction">The InfluxDB LineProtocol formatting options to use.</param>
+            <param name="fields">The metric fields to report as well as thier names.</param>
+            <returns>
+                An <see cref="T:App.Metrics.IMetricsBuilder" /> that can be used to further configure App Metrics.
+            </returns>
+        </member>
+        <member name="M:App.Metrics.MetricsInfluxDbLineProtocolFormatterBuilder.AsInfluxDbLineProtocol(App.Metrics.IMetricsOutputFormattingBuilder,App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOptions,App.Metrics.MetricFields)">
+            <summary>
+                Add the <see cref="T:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter" /> allowing metrics to optionally be reported to
+                InfluxDB using the LineProtocol.
+            </summary>
+            <param name="metricFormattingBuilder">s
+                The <see cref="T:App.Metrics.IMetricsOutputFormattingBuilder" /> used to configure InfluxDB Lineprotocol formatting
+                options.
+            </param>
+            <param name="options">The InfluxDB LineProtocol formatting options to use.</param>
+            <param name="fields">The metric fields to report as well as thier names.</param>
+            <returns>
+                An <see cref="T:App.Metrics.IMetricsBuilder" /> that can be used to further configure App Metrics.
+            </returns>
+        </member>
+        <member name="M:App.Metrics.MetricsInfluxDbLineProtocolFormatterBuilder.AsInfluxDbLineProtocol(App.Metrics.IMetricsOutputFormattingBuilder,App.Metrics.MetricFields)">
+            <summary>
+                Add the <see cref="T:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter" /> allowing metrics to optionally be reported to
+                InfluxDB using the LineProtocol.
+            </summary>
+            <param name="metricFormattingBuilder">s
+                The <see cref="T:App.Metrics.IMetricsOutputFormattingBuilder" /> used to configure InfluxDB Lineprotocol formatting
+                options.
+            </param>
+            <param name="fields">The metric fields to report as well as thier names.</param>
+            <returns>
+                An <see cref="T:App.Metrics.IMetricsBuilder" /> that can be used to further configure App Metrics.
+            </returns>
+        </member>
+        <member name="T:App.Metrics.Formatters.InfluxDB.Internal.ILineProtocolPoint">
+            <summary>
+            Defines a point (a ligne), which can be written in Line Protocol format.
+            </summary>
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.Internal.ILineProtocolPoint.WriteAsync(System.IO.TextWriter,System.Boolean)">
+            <summary>
+            Write this point as a line protocol item.
+            </summary>
+            <param name="textWriter">Text writer to write the line to.</param>
+            <param name="writeTimestamp">
+            <c>true</c> to let the point write the timestamp by itself, <c>false</c> to not write the timestamp at the end of the row.
+            You will have to write the timestamp by yourself of let the server receive the line and use its own timer as a timestamp.
+            </param>
+        </member>
+        <member name="T:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase">
+            <summary>
+            Base class for a <see cref="T:App.Metrics.Formatters.InfluxDB.Internal.ILineProtocolPoint"/> which takes care of common properties (<see cref="P:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase.Measurement"/>, <see cref="P:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase.Tags"/> and <see cref="P:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase.UtcTimestamp"/>).
+            </summary>
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase.WriteCommonAsync(System.IO.TextWriter)">
+            <summary>
+            Writes the common properties of the line procol points, which includes writing the measurement name and the different tags.
+            </summary>
+            <param name="textWriter">Writer to write the values to.</param>
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointBase.WriteTimestampAsync(System.IO.TextWriter)">
+            <summary>
+            Writes the timestamp using the most precise unit.
+            </summary>
+            <param name="textWriter">Writer to write the values to.</param>
+        </member>
+        <member name="T:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointMultipleValues">
+            <summary>
+            Represents a line procol point with multiple fields.
+            </summary>
+        </member>
+        <member name="T:App.Metrics.Formatters.InfluxDB.Internal.LineProtocolPointSingleValue">
+            <summary>
+            Represents a line protocol point with a single field.
+            </summary>
+        </member>
+        <member name="T:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOptions">
+            <summary>
+                Provides programmatic configuration for InfluxDB's LineProtocole format in the App Metrics framework.
+            </summary>
+        </member>
+        <member name="P:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter.MediaType">
+            <inheritdoc/>
+        </member>
+        <member name="P:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter.MetricFields">
+            <inheritdoc />
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.MetricsInfluxDbLineProtocolOutputFormatter.WriteAsync(System.IO.Stream,App.Metrics.MetricsDataValueSource,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.MetricSnapshotInfluxDbLineProtocolWriter.Write(System.String,System.String,System.String,System.Object,App.Metrics.MetricTags,System.DateTime)">
+            <inheritdoc />
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.MetricSnapshotInfluxDbLineProtocolWriter.Write(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Object},App.Metrics.MetricTags,System.DateTime)">
+            <inheritdoc />
+        </member>
+        <member name="M:App.Metrics.Formatters.InfluxDB.MetricSnapshotInfluxDbLineProtocolWriter.DisposeAsync(System.Boolean)">
+            <summary>
+                Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only
+                unmanaged resources.
+            </param>
+        </member>
+    </members>
+</doc>
