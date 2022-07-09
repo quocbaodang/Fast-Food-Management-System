@@ -1,3 +1,3 @@
 # FAST FOOD MANAGEMENT SYSTEM
 
-Use C# .NET
+Use C#, MySQL 
